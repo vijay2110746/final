@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS3 Design Demo</title>
+<style>
+    /* Container styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    
+
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Border */
+    .border-example {
+        display: inline-block;
+        border: 2px solid #007bff;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    /* Text Effects */
+    .text-example {
+        display: inline-block;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin-right: 20px;
+        color: #007bff; /* Text color */
+        font-size: 24px; /* Text size */
+        font-weight: bold; /* Text weight */
+        text-transform: uppercase; /* Uppercase text */
+        letter-spacing: 2px; /* Letter spacing */
+    }
+
+    /* Animation */
+    .animation-example {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background-color: #007bff;
+        position: relative;
+        animation: myAnimation 2s infinite alternate;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+
+    @keyframes myAnimation {
+        from {
+            left: 0;
+        }
+        to {
+            left: 200px;
+        }
+    }
+
+    /* Transitions */
+    .transition-example {
+        display: inline-block;
+        
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        line-height: 50px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.5s, transform 0.5s;
+    }
+
+    .transition-example:hover {
+        background-color: #0056b3;
+        transform: scale(1.1);
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>Border Example</h2>
+        <div class="border-example">
+            <p>This is an example of border using CSS3.</p>
+        </div>
+
+        <h2>Text Effects Example</h2>
+        <div class="text-example">
+            <p>This is an example of text effects using CSS3.</p>
+        </div>
+
+        <h2>Animation Example</h2>
+        <div class="animation-example"></div>
+
+        <h2>Transition Example</h2>
+        <div class="transition-example">
+            Hover over me for a transition effect!
+        </div>
+    </div>
+</body>
+</html>

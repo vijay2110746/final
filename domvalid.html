@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Form validation</title>
+</head>
+<body>
+       <h1>Form Validation Website for CC</h1>
+       <h2>Exercise 2</h2>
+       <form id="validate">
+              <label for="name">Name:</label>
+              <input name="name" type="text" id="name" required><br><br>
+
+              <label for="credit-card-no">Credit Card no:</label>
+              <input id="cc1" name="cc1" type="text" maxlength="4" required>
+              <input id="cc2" name="cc2" type="text" maxlength="4" required>
+              <input id="cc3" name="cc3" type="text" maxlength="4" required>
+              <input id="cc4" name="cc4" type="text" maxlength="4" required><br><br>
+
+              <label for="ccv">CCV:</label>
+              <input id="ccv" name="ccv" type="text" maxlength="3" required><br><br>
+
+              <label for="expiryMonth">Expiry month:</label>
+              <select name="expiryMonth" id="expiryMonth" required>
+                     <option value="">Select month</option>
+                     <option value="1">January</option>
+                     <option value="2">February</option>
+                     <option value="3">March</option>
+                     <option value="4">April</option>
+                     <option value="5">May</option>
+                     <option value="6">June</option>
+                     <option value="7">July</option>
+                     <option value="8">August</option>
+                     <option value="9">September</option>
+                     <option value="10">October</option>
+                     <option value="11">November</option>
+                     <option value="12">December</option>
+              </select><br><br>
+
+              <label for="expiryYear">Expiry year:</label>
+              <select name="expiryYear" id="expiryYear" required>
+                     <option value="">Select year</option>
+              </select><br><br>
+
+              <button type="submit">Submit</button>
+       </form>
+
+       <script>
+              document.getElementById("validate").addEventListener("submit", function(event){
+                     event.preventDefault();
+                     
+                     var name = document.getElementById('name').value;
+                     var cc1 = document.getElementById('cc1').value;
+                     var cc2 = document.getElementById('cc2').value;
+                     var cc3 = document.getElementById('cc3').value;
+                     var cc4 = document.getElementById('cc4').value;
+                     var ccv = document.getElementById('ccv').value;
+                     var expiryMonth = document.getElementById('expiryMonth').value;
+                     var expiryYear = document.getElementById('expiryYear').value;
+
+                     var nameRegex = /^[A-Za-z\s]+$/;
+                     var creditRegex = /^\d{4}$/;
+                     var ccvRegex = /^\d{3}$/;
+
+                     var firstFour = parseInt(cc1);
+                     var creditName = '';
+                     if ((firstFour >= 1000) && (firstFour <= 3333)){
+                            creditName = "MasterCard";
+                     } else if ((firstFour >= 3334) && (firstFour <= 6666)){
+                            creditName = "Visa";
+                     } else if ((firstFour >= 6667) && (firstFour <= 9999)){
+                            creditName = "Rupay";
+                     } else {
+                            alert("Invalid credit card prefix.");
+                            return false;
+                     }
+
+                     if (!nameRegex.test(name)){
+                            alert("Please enter a valid name.");
+                            return false;
+                     }
+                     if ((!creditRegex.test(cc1)) || (!creditRegex.test(cc2)) || (!creditRegex.test(cc3)) || (!creditRegex.test(cc4))){
+                            alert("Please enter a valid credit card number.");
+                            return false;
+                     }
+                     if (!ccvRegex.test(ccv)){
+                            alert("Please enter a valid CCV.");
+                            return false;
+                     }
+                     if (expiryYear < new Date().getFullYear() || (expiryYear == new Date().getFullYear() && expiryMonth < (new Date().getMonth() + 1))) {
+                            alert('Expiry date must be in the future.');
+                            return false;
+                     }
+
+                     alert('Form submitted successfully!\n' +
+                           'Name: ' + name + '\n' +
+                           'Credit Card Type: ' + creditName + '\n' +
+                           'Expiry: ' + expiryMonth + '/' + expiryYear);
+              });
+
+              var curYear = new Date().getFullYear();
+              for (var i = curYear; i <= curYear + 10; i++){
+                     var option = document.createElement('option');
+                     option.value = i;
+                     option.textContent = i;
+                     document.getElementById("expiryYear").appendChild(option);
+              }
+       </script>
+</body>
+</html>
